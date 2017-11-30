@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-bind</title>
+  <style>
+    .hotpink {
+      background-color: hotpink;
+    }
+
+    .gold {
+      background-color: gold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    // 数据
+    var data = {
+      text: '红花会',
+      className: 'hotpink'
+    };
+    // 页面
+    var template =
+      `
+       <div>
+          <span v-bind:class="className">{{text}}</span><br/>
+				  <button @click="changeColor">巴啦啦能量，变色吧</button><br/>
+          <span :class="className">v-bind简化写法</span>
+        </div>   
+        `;
+    // 启动vue
+    new Vue({
+      methods: {
+        changeColor: function () {
+          this.className = 'gold';
+        }
+      },
+      el: '#app',
+      data: data,
+      template: template
+    });
+  </script>
+</body>
+
+</html>

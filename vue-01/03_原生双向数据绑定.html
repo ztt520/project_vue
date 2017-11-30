@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生双向数据绑定</title>
+</head>
+
+<body>
+    <!-- 页面 -->
+    请输入：
+    <input type="text" id="i" name="">
+    <script type="text/javascript">
+        // 数据
+        var obj = {
+            text: '1234'
+        }
+        // 页面改变影响内存
+        document.getElementById('i').onkeyup = function (e) {
+            // 页面改变影响内存
+            obj.text = e.target.value;
+        }
+
+        //内存改变，影响页面
+        var input = document.getElementById('i');
+        // 存储obj.text的数据
+        var tmp = '';
+        // 监视obj这个对象中的text属性值的改变
+        Object.defineProperty(obj, 'text', {
+            set: function (newV) {
+                // 改变DOM
+                input.value = newV;
+                // 记录值
+                tmp = newV;
+                // obj.text = newV; //反复触发set
+            },
+            get: function () {
+                return tmp;
+            }
+        });
+    </script>
+</body>
+
+</html>

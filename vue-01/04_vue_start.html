@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue_简单使用</title>
+</head>
+<body>
+    <!-- 元素替换这一部分 -->
+    <div id="app"></div>
+    <!-- 引包 -->
+   <script type="text/javascript" src="./vue.js"></script> 
+    <script type="text/javascript">
+        var obj = {
+            text : 'abc'
+        }
+        new Vue({
+            // 框架生效的元素范围
+            // 目的地
+            el : document.getElementById('app'),
+            // 页面
+            template : `
+                <div>
+                    {{text}}
+                    页面的改变影响内存
+                    <input type="text" v-model="text"/>
+                </div>
+            `,
+            // 数据
+            data : obj,// 页面中用到的都是data对象的属性
+            //v-model 相当于 data中的属性
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>五彩的列表</title>
+  <style>
+    .hotpink {
+      background-color: hotpink;
+    }
+    .green {
+      background-color: greenyellow;
+    }
+    .gold {
+      background-color: gold;
+    }
+    .skyblue {
+      background-color: skyblue;
+    }
+    .big {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    // 启动
+    new Vue({
+      el: '#app',
+      template: `
+                <div>
+                  从三元表达式选择一个样式(字符串):
+                  <ul>
+                    <li :class="index%2 ==0 ? 'hotpink' : 'green'" v-for="(hero,index) in heros" :key="index">
+                      {{hero.name}} {{hero.id}} {{hero.score}}
+                    </li>
+                  </ul>
+                  从对象中选择一个样式(字符串):
+                  <ul>
+                    <li :class="list[hero.score]" v-for="(hero,index) in heros" :key="index">
+                      {{hero.name}} {{hero.id}} {{hero.score}}
+                    </li>
+                  </ul>
+                  返回一个对象，代表多个样式{'hotpink': true, 'big': true}
+                  <ul>
+                    <li :class="{hotpink:true,big:true}" v-for="(hero,index) in heros" :key="index">
+                      {{hero.name}} {{hero.id}} {{hero.score}}
+                    </li>
+                  </ul>
+                  深入浅出以上的样式思想 red big
+                  <ul>
+                    <li :class=" 'skyblue '+'big'" v-for="(hero,index) in heros" :key="index">
+                      {{hero.name}} {{hero.id}} {{hero.score}}
+                    </li>
+                  </ul>
+                </div>
+            `,
+      data: function () {
+        return {
+          list:{A: 'hotpink', B: 'green', C: 'gold', D: 'skyblue'},
+          heros: [
+            {id: 1,name: '鲁班七号',score: 'A'},
+            {id: 2,name: '娜可露露',score: 'C'},
+            {id: 3,name: '貂蝉',score: 'B' },
+            {id: 4,name: '王昭君',score: 'D'}
+          ]
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
